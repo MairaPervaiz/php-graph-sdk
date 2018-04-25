@@ -1,3 +1,9 @@
+<?php
+session_start();
+require_once "autoload.php";
+require_once "Facebook.php";
+?>
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -8,12 +14,11 @@ document.write("FACEBOOK");
 </head>
 <body>
 <?php
-$fb = new Facebook\Facebook([
-  'app_id' => '1991829711029056', // Replace {app-id} with your app id
-  'app_secret' => '1991829711029056',
-  'default_graph_version' => 'v2.10',
-  ]);
-
+$fb = new Facebook(array(
+  'app_id' => '1991829711029056',
+  'app_secret' => 'e6ba27898880d0860182ba00482e06c1',
+  'default_graph_version' => 'v2.10'
+  ));
 $helper = $fb->getRedirectLoginHelper();
 
 try {
@@ -29,7 +34,7 @@ try {
 }
 
 if (!$accessToken) {
-    header(string: 'Location: loginfb.php');
+    header("Location: loginfb.php");
 	exit();
 }
 
@@ -44,14 +49,14 @@ if (! $accessToken->isLongLived()) {
     echo "<p>long-lived access token error: " . $helper->getMessage() . "</p>\n\n";
     exit;
   }
-  $response=$FB-> get(endpoint:/me?fields=id,name,email);
+  $response=$fb->get('endpoint:/me?fields=id,name,email');
   $userdata=$response->getGraphNode()->asArray();
 
   var_dump($userdata);
 }$_SESSION['userdata']=$userdata;
 
 $_SESSION['access_token'] = (string) $accessToken;
-header(string 'Location: loginfb.php');
+header("Location: indexfb.php");
 exit();
 
 // User is logged in with a long-lived access token.
