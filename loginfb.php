@@ -1,12 +1,12 @@
 <?php
-require_once "facebookConnection.php";
+require_once "FacebookConnection.php";
 
 if(isset($_SESSION['access_token'])){
-header(string 'Location: loginfb.php');
+header('Location: indexfb.php');
 exit();
 }
 $redirectURL ="http://localhost/fyp/callback_fb.php";
-$permissions = 'maira.pervaiz@hotmail.com';
+$permissions = 'email';
 $loginURL=$helper->getloginURL($redirectURL, $permissions);
 echo $loginURL;
 ?>
@@ -28,9 +28,6 @@ User ID:
 Password:
 <input type="password" placeholder="Password" class="form-control" name="password"/><br><br>
 <input type="button" value="Login" onclick="window.location='<?php echo $loginURL ?>';" class="btn btn-primary"/>
-</td>
-</tr>
-</table>
 </form>
 </div>
 </div>

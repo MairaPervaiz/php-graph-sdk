@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <head>
 <meta charset="utf-8"/>
@@ -8,7 +11,6 @@
 <div class="container" style="margin-top: 100px">
 <div class="row justify-content-center">
 <div class="col-md-3" align="center">
-<img src="">
 </div>
 <div class="col-md-9" align="center">
 <table class="table table-hover table-bordered">
